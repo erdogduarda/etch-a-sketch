@@ -1,13 +1,20 @@
 #container{
     display: grid;
-    max-width: 160px;
-    max-height: 160px;
+    max-width: 640px;
+    max-height: 640px;
     aspect-ratio: 1/1;
     border: 1px solid #000;
+    margin: 0 auto;
 }
 .grid-item{
     border: 1px solid #000;
 }
 .grid-item:hover{
     background-color: gray;
+}
+#table{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px;
 }

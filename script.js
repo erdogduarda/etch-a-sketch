@@ -1,5 +1,6 @@
 let container = document.getElementById("container")
 let gridItem = document.getElementsByClassName("grid-item")
+let table = document.getElementById("table")
 
 function resetGrid(){
     for (let item of gridItem) {
@@ -20,13 +21,47 @@ function newGrid(){
 let resetButton = document.createElement("button")
 resetButton.innerText = "Reset"
 resetButton.addEventListener("click", resetGrid)
-document.body.append(resetButton)
+table.append(resetButton)
 
 let newGridButton = document.createElement("button")
 newGridButton.innerText = "New Grid"
 newGridButton.addEventListener("click", newGrid)
-document.body.append(newGridButton)
+table.append(newGridButton)
 
+let standartButton = document.createElement("button")
+standartButton.innerText = "Standart Mode"
+standartButton.addEventListener("click", function(){
+    isBlack = true
+    isEraser = false
+})
+table.append(standartButton)
+
+let rainbowButton = document.createElement("button")
+rainbowButton.innerText = "Rainbow Mode"
+rainbowButton.addEventListener("click", function(){
+    isBlack = false
+    isEraser = false
+})
+table.append(rainbowButton)
+
+let eraserButton = document.createElement("button")
+eraserButton.innerText = "Eraser"
+eraserButton.addEventListener("click", function(){
+    isEraser = true
+})
+table.append(eraserButton)
+
+let isBlack = true
+let isEraser = false
+
+function getRandomColor(){
+    let letters = '0123456789ABCDEF'
+    let color = '#'
+    for(let i = 0; i < 6; i++){
+        color += letters[Math.floor(Math.random() * 16)]
+    }
+    return color
+}
 
 function createGrid(rows, columns){
     container.style.gridTemplateColumns = `repeat(${columns}, 1fr)`
@@ -37,7 +72,17 @@ function createGrid(rows, columns){
         container.append(gridItem)
 
         gridItem.addEventListener("click", function(){
-            gridItem.style.backgroundColor = "red"
+            if(!isEraser){
+                if(isBlack){
+                    gridItem.style.backgroundColor = "black"
+                }
+                else{
+                    gridItem.style.backgroundColor = getRandomColor()
+                }
+            }
+            else{
+                gridItem.style.backgroundColor = "white"
+            }
         })
     }
 }
