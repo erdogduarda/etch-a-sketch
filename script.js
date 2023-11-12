@@ -1,6 +1,15 @@
 let container = document.getElementById("container")
 let gridItem = document.getElementsByClassName("grid-item")
 let table = document.getElementById("table")
+let slider = document.getElementById("myRange")
+let gridSize = document.getElementById("gridSize")
+gridSize.innerText = "16"
+
+slider.oninput = function(){
+    deleteGrid()
+    createGrid(this.value, this.value)
+    gridSize.innerText = this.value
+}
 
 function resetGrid(){
     for (let item of gridItem) {
